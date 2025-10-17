@@ -1,0 +1,51 @@
+<?php
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $dni = $_POST['dni'];
+
+    $nombres = $_POST['nombres'];
+
+    $apellidos = $_POST['apellidos'];
+
+    $whatsapp = $_POST['whatsapp'];
+
+    $destinatario = "acostapercy49@gmail.com";
+
+    $asunto = "Nuevo registro - Sorteo Ronco RZ250 2025";
+
+    $mensaje = "
+
+    Nuevo participante registrado:
+
+    🪪 DNI: $dni
+
+    👤 Nombres: $nombres
+
+    👥 Apellidos: $apellidos
+
+    📱 WhatsApp: $whatsapp
+
+    ";
+
+    $headers = "From: PremiosJorge <no-reply@tusitio.com>\r\n";
+
+    $headers .= "Reply-To: $destinatario\r\n";
+
+    if (mail($destinatario, $asunto, $mensaje, $headers)) {
+
+        echo "<h2>✅ Registro enviado correctamente. ¡Gracias por participar!</h2>";
+
+    } else {
+
+        echo "<h2>❌ Error al enviar el correo. Inténtalo más tarde.</h2>";
+
+    }
+
+} else {
+
+    echo "Acceso  no permitido.";
+
+}
+
+?>
